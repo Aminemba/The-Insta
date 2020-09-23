@@ -19,6 +19,8 @@ class PostsController < ApplicationController
     end
 
     def new
+        @posts = Post.all
+        @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       if params[:back]
         @post = Post.new(post_params)
       else
@@ -31,7 +33,7 @@ class PostsController < ApplicationController
 
         respond_to do |format|
           if @post.save
-            format.html { redirect_to @post, notice: 'Post was successfully created.' }
+            format.html { redirect_to new_post_path, notice: 'Post was successfully created.' }
             format.json { render :show, status: :created, location: @post }
           else
             format.html { render :new }
@@ -65,7 +67,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to new_post_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
    end
   end

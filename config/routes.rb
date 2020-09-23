@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/sessions/:id", to: "sessions#destroy"
   post "/sessions/new", to: "users#index"
 
-  post "/posts/create", to: "posts#confirm"
+  # post "/posts/create", to: "posts#confirm"
 
   resources :users
 

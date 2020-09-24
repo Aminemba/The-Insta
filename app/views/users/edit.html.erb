@@ -8,8 +8,6 @@
   </div>
   <div class="col-sm-9 right-col">
       <%= form_with(model: @user, local: true) do |f| %>
-         <%# <%= render 'shared/devisemes' %> %>
-
       <div class="row username-img">
         <div class="col-sm-3 text-right">
           <%= image_tag avatar_url(@user), width: '38', height: '38', class: "round-img" %>

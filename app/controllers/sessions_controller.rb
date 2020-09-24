@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user.id)
     else
-      flash[:danger] = 'failed to login'
-      render :new
+      respond_to do |format|
+      format.html { redirect_to new_session_path, notice: 'Failed to Log in' }
+      end
     end
   end
 

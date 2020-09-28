@@ -1,0 +1,17 @@
+<%= form_with(model: contact_mailer, local: true) do |form| %>
+  <% if contact_mailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact_mailer.errors.count, "error") %> prohibited this contact_mailer from being saved:</h2>
+
+      <ul>
+        <% contact_mailer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

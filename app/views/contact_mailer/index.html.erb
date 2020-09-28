@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contact Mailers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contact_mailers.each do |contact_mailer| %>
+      <tr>
+        <td><%= link_to 'Show', contact_mailer %></td>
+        <td><%= link_to 'Edit', edit_contact_mailer_path(contact_mailer) %></td>
+        <td><%= link_to 'Destroy', contact_mailer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contact Mailer', new_contact_mailer_path %>

@@ -4,6 +4,8 @@ has_many :photos, dependent: :destroy
 has_many :likes, -> {order(:created_at => :desc)}
 has_many :comments, -> {order(:created_at => :desc)}
 has_many :bookmarks
+has_many :favorites, dependent: :destroy
+has_many :favorite_users, through: :favorites, source: :user
 mount_uploader :image, PhotoUploader
 
 def is_belongs_to? user

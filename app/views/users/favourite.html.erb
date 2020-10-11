@@ -1,0 +1,33 @@
+<div class="row edit-profile-wrapper">
+  <div class="col-sm-3 left-col">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">YOUR FAVORITES</a>
+      <%= link_to "Log out", session_path(current_user.id), method: :delete,
+      class: "list-group-item list-group-item-action" %>
+    </div>
+  </div>
+  <div class="col-sm-9 right-col">
+    <div class="row username-img">
+      <div class="col-sm-3 text-right">
+        <%= image_tag @user.icon.url(), width: '38', height: '38', class: "round-img" %>
+      </div>
+      <div class="col-sm-9">
+        <p><%= @user.name %></p>
+      </div>
+    </div>
+
+    <table>
+      <tbody>
+        <% @favorites.each do |post| %>
+        <tr>
+          <td><%= post.user.name %></td>
+          <td><%= image_tag(post.image.url) %></td>
+          <td><%= post.posts %></td>
+          <td><%= link_to 'Show', @post %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

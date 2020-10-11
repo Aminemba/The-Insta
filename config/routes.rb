@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   post "/posts/create", to: "posts#confirm"
 
-  resources :users
+  resources :users do
+    member do
+      get :favourite
+    end
+  end
 
   resources :posts ,only: [:new ,:show , :update , :confirm, :edit, :index, :create, :destroy] do
   get "/post/:id", to: "post#destroy"
@@ -21,6 +25,6 @@ Rails.application.routes.draw do
       resources :likes, module: :comments
       end
     end
-
+resources :favorites, only: [:create, :destroy]
 mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

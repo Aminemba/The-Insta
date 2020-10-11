@@ -1,8 +1,24 @@
+<div class="row edit-profile-wrapper">
+  <div class="col-sm-3 left-col">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">FEED</a>
+    </div>
+  </div>
+  <div class="col-sm-9 right-col">
+    <div class="row username-img">
+      <div class="col-sm-3 text-right">
+        <%= image_tag @current_user.icon.url(), width: '38', height: '38', class: "round-img" %>
+      </div>
+      <div class="col-sm-9">
+        <p><%= @current_user.name %></p>
+      </div>
+    </div>
+
 <% @posts.each do |post| %>
   <div class="card mt-3 post">
     <div class="card-header d-flex align-items-center">
       <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-        <%= image_tag avatar_url(post.user), class: "post-author-icon" %>
+        <%= image_tag @current_user.icon.url(), width: '38', height: '38', class: "round-img" %>
       <% end %>
       <%= link_to user_path(post.user), class: "normal-color no-text-decoration",
         title: post.user.name do %>
@@ -47,3 +63,5 @@
     </div>
   </div>
 <% end %>
+</div>
+</div>

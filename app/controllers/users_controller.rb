@@ -30,6 +30,19 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+  @user = User.find(params[:id])
+  if @user.update(user_params)
+    redirect_to user_path(@user.id), success: 'User was successfully updated.'
+  else
+    render :edit
+  end
+end
+
+  def favourite
+      @user = User.find(params[:id])
+      @favorites = current_user.favorite_posts.all
+    end
 
   def create
     @user = User.new(user_params)
@@ -45,18 +58,6 @@ class UsersController < ApplicationController
   end
 
 
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
     @user.destroy
     respond_to do |format|
@@ -71,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-  params.require(:user).permit( :name, :email, :password , :password_confirmation)
+  params.require(:user).permit( :name, :email, :password , :password_confirmation ,:icon, :icon_cache)
   end
 
   def avatar_url user

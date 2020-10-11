@@ -17,14 +17,23 @@
           <a class="nav-link core-sprite explore-icon hide-text" href="#">Explore</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link core-sprite notification-icon hide-text" href="#">Notification</a>
+          <a class="nav-link core-sprite notification-icon hide-text" href="http://localhost:3000/users/:id/favourite"> FAVORITES </a>
         </li>
         <li class="nav-item">
           <% if logged_in? %>
           <%= link_to "Profile", user_path(current_user), class: "nav-link core-sprite profile-icon hide-text" %>
-          <% end %>
+
         </li>
+        <li class="nav-item">
+         <%= link_to "Log out", session_path(current_user.id), method: :delete,
+          class: "list-group-item list-group-item-action" %>
+          </li>
+
+          <% end %>
+
       </ul>
+
+
     </div>
   </div>
 </nav>

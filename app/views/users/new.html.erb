@@ -24,10 +24,6 @@
               <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
             </div>
 
-
-          <div class="form-group">
-            <%= form.file_field :icon, placeholder: 'icon', class: "log-in-tag" %>
-          </div>
             <div class="form-group">
               <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
             </div>
@@ -35,6 +31,10 @@
             <div class="form-group">
               <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation", class: "form-control" %>
             </div>
+
+            <br>
+            <p><%= f.file_field :icon, placeholder: 'icon', class: "log-in-tag" %></p>
+             <br>
 
             <div class="actions">
               <%= f.submit "Sign up", class: "btn btn-primary" %>

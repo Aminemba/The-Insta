@@ -1,6 +1,6 @@
 <div class="row justify-content-md-center profile-wrapper">
   <div class="col-md-4 text-center">
-    <%= image_tag avatar_url(@user), width: '152', height: '152', class: "round-img" %>
+    <%= image_tag @user.icon.url(), width: '38', height: '38', class: "round-img" %>
   </div>
   <div class="col-md-8">
     <div class="row">
@@ -39,8 +39,8 @@
     <% if @user == current_user %>
     <nav>
       <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab" aria-controls="nav-posts" aria-selected="true">POSTS</a>
-        <a class="nav-item nav-link" id="nav-saved-tab" data-toggle="tab" href="#nav-saved" role="tab" aria-controls="nav-saved" aria-selected="false">SAVED</a>
+        <a class="nav-item nav-link active" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab" aria-controls="nav-posts" aria-selected="true"><%= link_to "POSTS", posts_path %></a>
+        <a class="nav-item nav-link" id="nav-saved-tab" data-toggle="tab" href="#nav-saved" role="tab" aria-controls="nav-saved" aria-selected="false">  <%= link_to "FAVORITES", favourite_user_path(current_user.id) %>  </a>
       </div>
     </nav>
     <% end %>

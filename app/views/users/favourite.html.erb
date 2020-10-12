@@ -17,19 +17,21 @@
     </div>
 
 
-    <% @favorites.each do |post| %>
+    <table>
+      <tbody>
+        <% @favorites.each do |post| %>
+          <tr>
+            <td><%= post.user.name %></td>
+            <td><%= image_tag(post.image.url) %></td>
+            <td><%= post.posts %></td>
+            <td><%= link_to 'Show', @post %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-    <%= link_to user_path(post.user), class: "normal-color no-text-decoration",
-      title: post.user.name do %>
-      <strong><%= post.user.name %></strong>
-    <% end %>
+    <%= link_to 'Home', posts_path %>
 
-    <% if post.is_belongs_to? current_user %>
-      <%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
-        <i class="far fa-trash-alt" aria-hidden="true"></i>
-      <% end %>
-    <% end %>
-    <% end %>
   </div>
 
 </div>

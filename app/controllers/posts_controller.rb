@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :destroy ]
     before_action :logged_in?
     before_action :find_post, only: [:show, :destroy]
 
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     end
 
     def edit
+    @post = Post.find(params[:id])
     end
 
     def new

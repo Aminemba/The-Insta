@@ -13,8 +13,6 @@ class UsersController < ApplicationController
   def index
     @user = User.new(user_params)
     @users = User.all
-    gravatar_id = Digest::MD5::hexdigest(current_user.id).downcase
-    "https://www.gravatar.com/avatar/#{gravatar_id}.jpg"
   end
 
 

@@ -39,10 +39,11 @@ class UsersController < ApplicationController
   end
 end
 
-  def favourite
-      @user = User.find(params[:id])
-      @favorites = current_user.favorite_posts.all
-    end
+
+def favourite
+  @user = User.find(params[:id])
+  @favorites = current_user.favorite_posts.all
+end
 
   def create
     @user = User.new(user_params)

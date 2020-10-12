@@ -9,18 +9,20 @@ class PostsController < ApplicationController
       @posts = Post.all
       @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       @post = Post.new
+      @favorite = current_user.favorites.find_by(post_id: @post.id)
     end
 
     def show
      @likes=Like.new
      @likes=Like.all
+
     end
 
     def edit
     end
 
     def new
-      
+
         @posts = Post.all
         @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       if params[:back]

@@ -67,7 +67,6 @@
 <% end %>
 <br>
 
-<button type="button" class="btn btn-default"><%= link_to 'Back', posts_path %>
       <!-- load comments -->
       <div id="comment-post-<%= post.id.to_s %>">
         <%= render 'comment_list', {post: post} %>

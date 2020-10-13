@@ -18,22 +18,43 @@
   <div class="card mt-3 post">
     <div class="card-header d-flex align-items-center">
       <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-        <%= image_tag @current_user.icon.url(), width: '38', height: '38', class: "round-img" %>
+      <%# <%= image_tag @post.user.icon.url, width: '38', height: '38', class: "round-img" %> %>
       <% end %>
       <%= link_to user_path(post.user), class: "normal-color no-text-decoration",
         title: post.user.name do %>
         <strong><%= post.user.name %></strong>
+        <span><%= post.content %></span>
+
       <% end %>
+      </div>
+      <%= render "photos", {post: post} %>
+
+    <div class="card mt-3 post">
+        <div class="card-header d-flex align-items-center">
+      <% unless @post.user_id == current_user.id %>
+        <% if @favorite.present? %>
+          <button type="button" class="btn btn-danger"><%= link_to 'Unfavorite', favorite_path(id: @favorite.id), method: :delete %>
+        <% else %>
+          <button type="button" class="btn "><%= link_to 'Favorite', favorites_path(post_id: @post.id), method: :post %>
+        <% end %>
+      <% end %>
+
       <% if post.is_belongs_to? current_user %>
         <%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
           <i class="far fa-trash-alt" aria-hidden="true"></i>
-
-        <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post) %>
         <% end %>
+
+       <% if post.is_belongs_to? current_user %>
+       <%# <!-- <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post) %> --> %>
       <% end %>
+
+      <% end %>
+
+    </div>
     </div>
 
-    <%= render "photos", {post: post} %>
+
+
 
     <div class="card-body">
       <div class="row actions">
@@ -48,26 +69,9 @@
       <div id="like-text-post-<%= post.id.to_s %>">
         <%= render "like_text", {likes: post.likes} %>
       </div>
-      <div>
-        <span><strong><%= post.user.name %></strong></span>
-        <span><%= post.content %></span>
-      </div>
     <br>
     <br>
 
-<% unless @post.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <button type="button" class="btn btn-danger"><%= link_to 'Unfavorite', favorite_path(id: @favorite.id), method: :delete %>
-  <% else %>
-    <button type="button" class="btn "><%= link_to 'Favorite', favorites_path(post_id: @post.id), method: :post %>
-  <% end %>
-<% end %>
-
-<% if @post.user_id == current_user.id %>
-  <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post) %>
-  <button type="button" class="btn btn-danger"><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-<br>
 
       <!-- load comments -->
       <div id="comment-post-<%= post.id.to_s %>">

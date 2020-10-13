@@ -8,6 +8,7 @@ gem 'rails', '~> 6.0', '>= 6.0.3.3'
 gem 'rake', '~> 13.0', '>= 13.0.1'
 gem 'bootstrap', '~> 4.0.0'
 gem 'bootsnap', '~> 1.4', '>= 1.4.8'
+gem 'faker', :require => false
 gem 'carrierwave', '~> 2.1'
 gem 'mini_racer'
 gem 'cloudinary'

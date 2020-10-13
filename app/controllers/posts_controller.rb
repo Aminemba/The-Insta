@@ -19,7 +19,6 @@ class PostsController < ApplicationController
     end
 
     def edit
-    @post = Post.find(params[:id])
     end
 
     def new
@@ -93,7 +92,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:content , :id, :image, :image_cache, :user_id)
+    params.require(:post).permit(:posts, :id, :image, :image_cache, :user_id, :name, :email)
   end
 
 end

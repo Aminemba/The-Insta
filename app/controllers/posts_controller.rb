@@ -22,9 +22,8 @@ class PostsController < ApplicationController
     end
 
     def new
-
-        @posts = Post.all
-        @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
+      @posts = Post.all
+      @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       if params[:back]
         @post = Post.new(post_params)
       else
@@ -47,6 +46,8 @@ class PostsController < ApplicationController
     end
 
     def confirm
+      @posts = Post.all
+      @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       @post = current_user.posts.build(post_params)
       @post.id = params[:id]
    end

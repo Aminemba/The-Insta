@@ -24,10 +24,12 @@
         title: post.user.name do %>
         <strong><%= post.user.name %></strong>
         <span><%= post.content %></span>
-
+        <div class="carousel-item active">
+               <%= image_tag(post.image.url) if post.image && post.image.url  %>
+         </div>
       <% end %>
       </div>
-      <%= render "photos", {post: post} %>
+
 
     <div class="card mt-3 post">
         <div class="card-header d-flex align-items-center">
@@ -45,7 +47,7 @@
         <% end %>
 
        <% if post.is_belongs_to? current_user %>
-       <%# <!-- <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post) %> --> %>
+        <%# <!-- <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post)%> 
       <% end %>
 
       <% end %>

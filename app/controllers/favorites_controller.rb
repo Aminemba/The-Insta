@@ -6,6 +6,6 @@ class FavoritesController < ApplicationController
 
   def destroy
     favorite = current_user.favorites.destroy.(post_id: params[:post_id])
-    redirect_to @post, notice: "#you have deleted like for this post"
+    redirect_to @post, notice: "#you have unliked this post"
   end
 end

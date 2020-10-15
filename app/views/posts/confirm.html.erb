@@ -9,25 +9,22 @@
         <div class="form-group row mt-2">
           <div class="col-auto pr-0">
             <%= image_tag @current_user.icon.url(), width: '38', height: '38', class: "round-img" %>
+            <%= @current_user.name %>
           </div>
-
+  </div>
           <div class="col pl-0">
-
             <h5><%= f.hidden_field :content , class: "field"%></h5>
             <p><%= @post.content %></p>
             <%= f.hidden_field :user_id %>
             <%= f.hidden_field :id %>
 
           </div>
-        </div>
+
 <br>
 <br>
         <%= image_tag(@post.image.url) if @post.image && @post.image.url%>
         <%= f.hidden_field :image %>
         <%= f.hidden_field :image_cache%>
-
-
-
       </div>
     </div>
 <br>
@@ -38,8 +35,9 @@
   <% end %>
   <br>
 
-  <%= form_with(model: @post, url: root_path, local: true, method: 'get') do |form| %>
-    <%= form.hidden_field :posts %>
+  <%= form_with(model: @post, url: new_post_path, local: true, method: 'get') do |form| %>
+    <%= form.hidden_field :content %>
+    <%= form.hidden_field :image %>
     <%= form.hidden_field :image_cache %>
     <%= form.submit "back", name:'back' , class: "btn" %>
   <% end %>

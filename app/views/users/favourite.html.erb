@@ -23,8 +23,8 @@
           <tr>
             <td><%= post.user.name %></td>
             <td><%= image_tag(post.image.url) %></td>
-            <td><%= post.posts %></td>
-            <td><%= link_to 'Show', @post %></td>
+            <td><%= post.content %></td>
+            <td><%= link_to 'Show', post %></td>
           </tr>
         <% end %>
       </tbody>

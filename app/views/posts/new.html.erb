@@ -33,4 +33,10 @@
   <%= f.submit "Post", class: "btn btn-primary" %>
   <% end %>
 </div>
+<div id="posts">
+    <%= render 'posts_list' %>
+  </div>
+<br>
+
+<%= will_paginate @posts %>
 </div>

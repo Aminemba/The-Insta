@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [ :show , :edit, :update, :destroy]
+  before_action :set_user, only: [ :favorite,:show , :edit, :update, :destroy]
 
   def show
+    @post=Post.new
+    @posts = Post.all
+    @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
     @user = User.find(params[:id])
     set_meta_tags title: @user.name
     @posts = @user.posts.includes(:photos, :likes, :comments)
@@ -39,6 +42,10 @@ end
 
 
 def favourite
+  @favorites= Favorite.all
+  @post = Post.new
+  @posts = Post.all
+  @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
   @user = User.find(params[:id])
   @favorites = current_user.favorite_posts.all
 end

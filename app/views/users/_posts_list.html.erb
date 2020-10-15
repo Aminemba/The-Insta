@@ -5,57 +5,47 @@
     </div>
   </div>
   <div class="col-sm-9 right-col">
-    <div class="row username-img">
 
-    </div>
 
 <% @posts.each do |post| %>
-  <div class="card mt-5 post">
+  <div class="card mt-3 post">
     <div class="card-header d-flex align-items-center">
-        <%= link_to user_path(post.user), class: "no-text-decoration",
-        title: post.user.name do %>
-        <br>
-        <%= image_tag post.user.icon.url(), width: '38', height: '38', class: "round-img" %>
-        <strong><%= post.user.name %></strong>
-        <br>
-
-        <div class="carousel-item active">
-          <%= post.content %>
-       </div>
-
-
-        <br>
-        <div class="carousel-item active">
-          <%= image_tag(post.image.url) if post.image && post.image.url  %>
-       </div>
+      <%= link_to user_path(post.user), class: "no-text-decoration" do %>
+      <%# <%= image_tag @post.user.icon.url, width: '38', height: '38', class: "round-img" %> %>
       <% end %>
-    </div>
+      <%= link_to user_path(post.user), class: "normal-color no-text-decoration",
+        title: post.user.name do %>
+        <strong><%= post.user.name %></strong>
+        <span><%= post.content %></span>
+        <div class="carousel-item active">
+               <%= image_tag(post.image.url) if post.image && post.image.url  %>
+         </div>
+      <% end %>
+      </div>
 
 
     <div class="card mt-3 post">
         <div class="card-header d-flex align-items-center">
-
       <% unless @post.user_id == current_user.id %>
         <% if @favorite.present? %>
           <button type="button" class="btn btn-danger"><%= link_to 'Unfavorite', favorite_path(id: @favorite.id), method: :delete %>
         <% else %>
-          <button type="button" class="btn btn primary"><%= link_to 'Favorite', favorites_path(post_id: post.id), method: :post %>
+          <button type="button" class="btn "><%= link_to 'Favorite', favorites_path(post_id: @post.id), method: :post %>
         <% end %>
       <% end %>
-      </div>
 
       <% if post.is_belongs_to? current_user %>
         <%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         <% end %>
-       <br>
+
        <% if post.is_belongs_to? current_user %>
-        <button type="button" class="btn btn-default"> <%= link_to 'Edit', edit_post_path(post)%>
+        <%# <!-- <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(@post)%>
       <% end %>
 
-    <% end %>
+      <% end %>
 
-
+    </div>
     </div>
 
 

@@ -33,11 +33,16 @@ class UsersController < ApplicationController
 
   def update
   @user = User.find(params[:id])
+if @user == current_user
   if @user.update(user_params)
     redirect_to user_path(@user.id), success: 'User was successfully updated.'
   else
     render :edit
   end
+else
+  redirect_to user_path(@current_user.id), notice: 'Prohibited action.'
+end
+
 end
 
 

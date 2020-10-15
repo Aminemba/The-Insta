@@ -6,12 +6,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
-  # process :convert => 'png'
-  # process :tags => ['post_picture']
-
   version :standard do
-    process :resize_to_fill => [1080, 1080, :center]
+    process :resize_to_fill => [100, 100, :center]
   end
 
   # version :thumbnail do

@@ -33,8 +33,9 @@ class PostsController < ApplicationController
     end
 
     def create
+      @posts = Post.all
+      @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
         @post = Post.new(post_params)
-
         respond_to do |format|
           if @post.save
             format.html { redirect_to new_post_path, notice: 'Post was successfully created.' }

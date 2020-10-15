@@ -10,6 +10,7 @@
           <div class="col-auto pr-0">
             <%= image_tag @current_user.icon.url(), width: '38', height: '38', class: "round-img" %>
           </div>
+
           <div class="col pl-0">
 
             <h5><%= f.hidden_field :content , class: "field"%></h5>
@@ -19,7 +20,8 @@
 
           </div>
         </div>
-
+<br>
+<br>
         <%= image_tag(@post.image.url) if @post.image && @post.image.url%>
         <%= f.hidden_field :image %>
         <%= f.hidden_field :image_cache%>

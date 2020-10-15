@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     end
 
     def new
+      @favorites = current_user.favorite_posts.all
       @posts = Post.all
       @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
       if params[:back]
@@ -78,6 +79,7 @@ class PostsController < ApplicationController
   end
 
 
+
   private
   def set_post
     @post = Post.find(params[:id])
@@ -94,6 +96,14 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:posts, :id, :image, :image_cache, :user_id, :name, :email)
+  end
+
+  def favourite
+    @favorites = current_user.favorite_posts.all
+    @post = Post.new
+    @posts = Post.all
+    @posts = @posts.paginate(page: params[:page], per_page: 5).order('created_at DESC')
+    @user = User.find(params[:id])
   end
 
 end

@@ -10,7 +10,7 @@
     </div>
 
 <% @posts.each do |post| %>
-  <div class="card mt-5 post">
+  <div class="card post">
     <div class="card-header d-flex align-items-center">
         <%= link_to user_path(post.user), class: "no-text-decoration",
         title: post.user.name do %>
@@ -42,7 +42,7 @@
         <%# <% else %>
           <button type="button" class="btn btn primary"><%= link_to 'Make Favorite', favorites_path(post_id: post.id), method: :post %>
         <% end %>
-      <%# <% end %> 
+      <%# <% end %>
       </div>
 
       <% if post.is_belongs_to? current_user %>
